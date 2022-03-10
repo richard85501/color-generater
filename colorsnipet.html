@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .title{
+            width: 100%;
+            text-align: center;
+            font-size: 3rem;
+            margin-top: 150px;
+        }
+        .color{
+            width: 200px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .colorcontainer{
+            display: flex;
+            justify-content: center;
+            margin: 50px 0 0 0 ;
+        }
+        .buttonConatiner{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 80px 0 0 0 ;
+        }
+        .colortextContainer{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .text{
+            width: 200px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="colortextToggleHandler()" class="toggleTextButton">hide text</button>
+    <div class="title">Random Color</div>
+    <div class="colorcontainer">
+        <div class="colorone color"></div>
+        <div class="colortwo color"></div>
+        <div class="colorthree color"></div>
+        <div class="colorfour color"></div>    
+    </div>
+    <div class="colortextContainer">
+        <div class="text"></div>
+        <div class="text"></div>
+        <div class="text"></div>
+        <div class="text"></div>  
+    </div>
+    <div class="buttonConatiner">
+        <button class="changeColor" onclick="colorChangeHandler()"> change Color</button>
+    </div>
+    <script>
+        
+        let colortextContainer = document.querySelector(".colortextContainer");
+        let colorDom = document.querySelectorAll(".color");
+        let textDom = document.querySelectorAll(".text");
+        let toggleTextButton = document.querySelector(".toggleTextButton");
+        let showtext = true;
+        
+        const colorChangeHandler = () =>{
+            let randomArr = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'];
+
+            for(let y= 0;y<colorDom.length;y++){
+                let colorstr = '';
+                for(let i =0; i<6 ;i++){
+                    colorstr += randomArr[Math.floor(Math.random()*randomArr.length)];
+                }
+                colorDom[y].style.backgroundColor  = '#'+colorstr
+                textDom[y].innerHTML  = '#'+colorstr
+            }
+        }
+
+        const colortextToggleHandler = () =>{
+            if(showtext){
+                colortextContainer.style.opacity = '0'
+                showtext = !showtext
+                toggleTextButton.innerHTML = 'show text '
+            }else if(!showtext){
+                colortextContainer.style.opacity = '1'
+                showtext = !showtext
+                toggleTextButton.innerHTML = 'hide text '
+            }
+        }
+        const init = () => {
+            colorChangeHandler();
+        }
+
+        init();
+    </script>
+</body>
+</html>
